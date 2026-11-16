@@ -15,17 +15,17 @@ This web service allows authenticated users to view, add, and remove films store
 
 * **Stateful Session Management:** Implements browser cookie authentication (`response.set_cookie`) with a 5-minute (`max_age=300`) expiration window, enforcing session validation across protected routes and providing clean session termination on logout.
 * **Relational Database Integration:** Executes multi-table `SELECT` joins across `films` and `categories` tables alongside parameterized `INSERT` and `DELETE` statements (`?` placeholders) to prevent SQL injection.
-* **RESTful Routing & HTTP Method Handling:** Maps distinct `GET` and `POST` handlers using Bottle's `@route` decorators to separate form rendering from form submission processing[cite: 2].
-* **Server-Side Validation:** Verifies active session cookies and validates required form fields prior to executing database mutations[cite: 2].
+* **RESTful Routing & HTTP Method Handling:** Maps distinct `GET` and `POST` handlers using Bottle's `@route` decorators to separate form rendering from form submission processing.
+* **Server-Side Validation:** Verifies active session cookies and validates required form fields prior to executing database mutations.
 
 ---
 
 ## Tech Stack
 
-* **Language:** Python 3[cite: 2]
-* **Web Framework:** [Bottle](https://bottlepy.org/) (`bottle`)[cite: 2]
-* **Database:** SQLite (`sqlite3`)[cite: 2]
-* **Templating:** Bottle SimpleTemplate Engine (`.tpl` views)[cite: 2]
+* **Language:** Python 3
+* **Web Framework:** [Bottle](https://bottlepy.org/) (`bottle`)
+* **Database:** SQLite (`sqlite3`)
+* **Templating:** Bottle SimpleTemplate Engine (`.tpl` views)
 
 ---
 
@@ -33,12 +33,12 @@ This web service allows authenticated users to view, add, and remove films store
 
 | Endpoint | Methods | Auth Required | Description |
 | :--- | :--- | :--- | :--- |
-| `/` | `GET` | No | Renders the initial user login view (`index`)[cite: 2]. |
-| `/login` | `GET`, `POST` | No | Authenticates credentials against the `users` table, sets a 300-second `year` cookie, and loads the `main menu` template[cite: 2]. |
-| `/logout` | `GET`, `POST` | No | Clears the active `year` session cookie and redirects to `/`[cite: 2]. |
-| `/showallmovies` | `GET` | Yes | Joins `films` and `categories` filtered by the user's cookie `year` and renders `displayfilms`[cite: 2]. |
-| `/addmovie` | `GET`, `POST` | Yes | Renders the `add_movie` form (`GET`) or inserts a new film scoped to the user's `year` cookie (`POST`)[cite: 2]. |
-| `/rem_movie` | `GET`, `POST` | Yes | Renders the `rem_movie` form (`GET`) or deletes a record matching both `film_id` and `title` (`POST`)[cite: 2]. |
+| `/` | `GET` | No | Renders the initial user login view (`index`). |
+| `/login` | `GET`, `POST` | No | Authenticates credentials against the `users` table, sets a 300-second `year` cookie, and loads the `main menu` template. |
+| `/logout` | `GET`, `POST` | No | Clears the active `year` session cookie and redirects to `/`. |
+| `/showallmovies` | `GET` | Yes | Joins `films` and `categories` filtered by the user's cookie `year` and renders `displayfilms`. |
+| `/addmovie` | `GET`, `POST` | Yes | Renders the `add_movie` form (`GET`) or inserts a new film scoped to the user's `year` cookie (`POST`). |
+| `/rem_movie` | `GET`, `POST` | Yes | Renders the `rem_movie` form (`GET`) or deletes a record matching both `film_id` and `title` (`POST`). |
 
 ---
 
@@ -46,8 +46,8 @@ This web service allows authenticated users to view, add, and remove films store
 
 ### Prerequisites
 
-* Python 3.x[cite: 2]
-* `bottle` web framework[cite: 2]
+* Python 3.x
+* `bottle` web framework
 
 bash
 pip install bottle
@@ -66,7 +66,7 @@ Plaintext
     ├── message.tpl
     └── message_2.tpl
 Database Schema
-The application expects movies5.db to contain users, categories, and films tables[cite: 2]:
+The application expects movies5.db to contain users, categories, and films tables:
 
 SQL
 CREATE TABLE IF NOT EXISTS users (
@@ -91,8 +91,8 @@ CREATE TABLE IF NOT EXISTS films (
     FOREIGN KEY (category) REFERENCES categories(category)
 );
 Running the Server
-Start the local web server on port 8083[cite: 2]:
+Start the local web server on port 8083:
 
 Bash
 python index.py
-Open a browser and navigate to http://localhost:8083[cite: 2]
+Open a browser and navigate to http://localhost:8083
